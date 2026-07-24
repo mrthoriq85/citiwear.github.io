@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>citiwear.basic | Premium Urban Essentials</title>
-    <!-- Tailwind CSS & Alpine.js -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       defer
@@ -15,11 +14,9 @@
   </head>
 
   <body class="bg-[#FBFBFB] text-stone-900 antialiased" x-data="shopApp()">
-    <!-- 1. NOTIFICATION BAR -->
     <div
       class="bg-stone-950 text-white py-2.5 text-[10px] font-bold tracking-[0.2em] uppercase border-b border-white/5 overflow-hidden whitespace-nowrap relative flex"
     >
-      <!-- Animasi Marquee -->
       <div class="animate-marquee flex gap-12 invisible-scrollbar">
         <span
           >⚡ SPECIAL PROMO: GRATIS ONGKIR SELURUH INDONESIA UNTUK PEMBELIAN DI
@@ -36,14 +33,13 @@
       </div>
     </div>
 
-    <!-- 2. NAVIGATION BAR -->
     <header
       class="sticky top-0 z-40 bg-white/70 backdrop-blur-md border-b border-stone-100"
     >
       <div
         class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
       >
-        <a href="#" class="hover:opacity-80 transition-opacity">
+        <a href="index.html" class="hover:opacity-80 transition-opacity">
           <img
             src="img/logo.png"
             alt="Logo citiwear.basic"
@@ -51,7 +47,6 @@
           />
         </a>
 
-        <!-- Filter Kategori Desktop -->
         <nav
           class="hidden md:flex space-x-10 text-[11px] font-semibold tracking-[0.2em] uppercase"
         >
@@ -103,5 +98,415 @@
         </button>
       </div>
     </header>
+
+    <div
+        class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-start"
+        style="margin: 4rem auto; padding: 0 1.5rem"
+        x-data="{ 
+            quantity: 1,
+            activeIndex: 0,
+            images: [
+            { url: 'img/panjang/Putih.png', color: 'Putih' },
+            { url: 'img/panjang/Hitam.png', color: 'Hitam' }
+            ],
+            init() {
+            // PERBAIKAN: Mengisi data 'selectedProduct' bawaan saat halaman dimuat
+            this.selectedProduct = { id: 1, name: 'Cotton Combed 24s Premium T-Shirt', price: 40000 };
+            this.selectedColor = 'Abu Misty';
+            this.selectedColorImage = 'img/panjang/Putih.png';
+            }
+        }"
+        >
+        <div class="w-full flex flex-col gap-4">
+            <div
+            class="w-full bg-stone-50 flex justify-center items-center aspect-square rounded-xl relative group overflow-hidden cursor-zoom-in"
+            x-data="{ origin: 'center' }"
+            @mousemove="
+                const rect = $el.getBoundingClientRect();
+                const x = ((event.clientX - rect.left) / rect.width) * 100;
+                const y = ((event.clientY - rect.top) / rect.height) * 100;
+                origin = `${x}% ${y}%`;
+            "
+            @mouseleave="origin = 'center'"
+            >
+            <img
+                :src="images[activeIndex].url"
+                alt="Cotton Combed 24s Premium T-Shirt"
+                class="w-full h-full object-contain mix-blend-multiply transition-transform duration-200 ease-out p-8 transform group-hover:scale-175"
+                :style="{ transformOrigin: origin }"
+            />
+
+            <button
+                @click="if(activeIndex > 0) { activeIndex--; selectedColor = images[activeIndex].color }"
+                x-show="activeIndex > 0"
+                class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm text-stone-800 hover:bg-stone-900 hover:text-white w-9 h-9 flex items-center justify-center rounded-full shadow-md transition-all duration-200 cursor-pointer z-10"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+
+            <button
+                @click="if(activeIndex < images.length - 1) { activeIndex++; selectedColor = images[activeIndex].color }"
+                x-show="activeIndex < images.length - 1"
+                class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm text-stone-800 hover:bg-stone-900 hover:text-white w-9 h-9 flex items-center justify-center rounded-full shadow-md transition-all duration-200 cursor-pointer z-10"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </button>
+            </div>
+
+            <div class="flex justify-center gap-2">
+            <template x-for="(image, index) in images">
+                <button
+                @click="activeIndex = index; selectedColor = image.color"
+                :class="activeIndex === index ? 'w-6 bg-stone-800' : 'w-2 bg-stone-300'"
+                class="h-2 rounded-full transition-all duration-300 cursor-pointer"
+                ></button>
+            </template>
+            </div>
+        </div>
+
+        <div class="flex flex-col">
+            <span class="text-[10px] tracking-[0.2em] uppercase font-semibold text-stone-400 mb-1">CITIWEAR.BASIC</span>
+
+            <h1 class="text-3xl font-medium tracking-wide text-stone-800 mb-4">
+            Cotton Combed 24s Premium T-Shirt
+            </h1>
+
+            <div class="flex items-center gap-3 mb-6">
+            <span class="text-xs line-through text-stone-400">Rp 69.000,00 IDR</span>
+            <span class="text-sm font-medium text-stone-800">Rp 50.000,00 IDR</span>
+            </div>
+
+            <hr class="border-stone-100 mb-6" />
+
+            <div class="mb-6">
+            <span class="text-xs font-medium text-stone-500 block mb-2.5">Warna</span>
+            <div class="flex flex-wrap gap-2">
+                <template x-for="color in ['Putih', 'Hitam']">
+                <button
+                    @click="
+                    selectedColor = color;
+                    selectedColorImage = color === 'Putih' ? 'img/panjang/Putih.png' : color === 'Hitam' ? 'img/panjang/Hitam.png' : '';
+                    const foundIndex = images.findIndex(img => img.color === color);
+                    if (foundIndex !== -1) activeIndex = foundIndex;
+                    "
+                    :class="selectedColor === color ? 'border-stone-950 ring-2 ring-stone-950/20' : 'border-stone-200 hover:border-stone-400'"
+                    class="w-8 h-8 rounded-full border transition-all duration-200 cursor-pointer"
+                    :style="{ backgroundColor: color === 'Putih' ? '#FFFFFF' : color === 'Hitam' ? '#000000' :  '' }"
+                ></button>
+                </template>
+            </div>
+            </div>
+
+            <div class="mb-6">
+            <span class="text-xs font-medium text-stone-500 block mb-2.5">Size</span>
+            <div class="flex flex-wrap gap-2">
+                <template x-for="size in ['S', 'M', 'L', 'XL']">
+                <button
+                   @click="selectedSize = size"
+                    :class="selectedSize === size ? 'bg-stone-950 text-white border-stone-950' : 'bg-white text-stone-800 border-stone-200 hover:border-stone-400'"
+                    class="w-12 h-8 flex items-center justify-center text-xs font-medium border rounded-full transition-colors duration-200 cursor-pointer uppercase"
+                    x-text="size"
+                ></button>
+                </template>
+            </div>
+            </div>
+
+            <div class="mb-8">
+            <span class="text-xs font-medium text-stone-500 block mb-2.5">Jumlah</span>
+            <div class="flex items-center border border-stone-300 rounded-sm w-32 justify-between px-3 py-2">
+                <button @click="if(quantity > 1) quantity--" class="text-stone-400 hover:text-black font-light text-lg cursor-pointer">-</button>
+                <span class="text-xs font-medium text-stone-800" x-text="quantity"></span>
+                <button @click="quantity++" class="text-stone-400 hover:text-black font-light text-lg cursor-pointer">+</button>
+            </div>
+            </div>
+
+            <div class="space-y-3">
+            <button 
+                id="addToCartFromModal" 
+                @click="addToCartFromModal()"
+                class="w-full bg-white border border-stone-900 text-stone-900 text-xs font-bold uppercase tracking-[0.15em] py-3.5 hover:bg-stone-50 transition-colors duration-200 cursor-pointer"
+            >
+                Tambahkan ke keranjang
+            </button>
+            </div>
+        </div>
+        </div>
+
+    <div
+      class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-start border-t border-stone-100 pt-12"
+      style="margin: 4rem auto; padding: 0 1.5rem"
+    >
+      <div>
+        <h2
+          class="text-sm font-bold uppercase tracking-wider text-stone-800 mb-4"
+        >
+          Spesifikasi & Informasi Produk
+        </h2>
+        <ul
+          class="list-disc pl-5 space-y-2 text-xs text-stone-600 leading-relaxed"
+        >
+          <li>Berbahan Cotton Combad 24S Premium</li>
+          <li>Ketebalan 230 Gsm</li>
+          <li>Unisex Bisa Dipakai Pria / Wanita</li>
+          <li>Produk Lokal Dengan Kualitas International</li>
+          <li>Dibuat Di Indonesia</li>
+          <li class="font-semibold text-stone-800">Size Chart Di Sebelah Samping</li>
+          <li class="font-semibold text-stone-800">Cara Order:</li>
+          <li>
+            Barang Yang Kami Kirimkan Hanya Yang Kaka Order Sesuai Dari Sistem
+            Shopee Bukan Melalui Notes Catatan Atau Chat.
+          </li>
+          <li>
+            Pastikan No Handphone Dan Alamat Sudah Sesuai, Agar Barang Bisa
+            Sampai Ke Tempat Kaka Tanpa Ada Masalah.
+          </li>
+          <li class="font-semibold text-stone-800">Ketersediaan Barang:</li>
+          <li>
+            Selama Size Dan Warna Bisa Dipilih Berarti Barang Ready Siap Kirim.
+          </li>
+          <li>Apabila Barang Tidak Ada, Pasti Akan Kami Infokan.</li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col">
+        <h2
+          class="text-sm font-bold uppercase tracking-wider text-stone-800 mb-4"
+        >
+          Panduan Ukuran (Size Chart)
+        </h2>
+        <div class="bg-stone-50 p-4 rounded-xl border border-stone-100">
+          <img
+            src="img/sizepanjang.jpg"
+            alt="Size Chart"
+            class="w-full h-auto object-contain rounded-lg"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="relative z-50" x-show="cartOpen" x-transition x-cloak>
+      <div
+        class="fixed inset-0 bg-stone-950/40 backdrop-blur-xs"
+        @click="cartOpen = false"
+      ></div>
+      <div
+        class="fixed inset-y-0 right-0 w-full max-w-[420px] bg-white flex flex-col shadow-2xl h-full"
+        x-transition:enter="transition ease-out duration-400 transform"
+        x-transition:enter-start="translate-x-full"
+        x-transition:enter-end="translate-x-0"
+        x-transition:leave="transition ease-in duration-300 transform"
+        x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="translate-x-full"
+      >
+      <!-- Header Keranjang -->
+        <div
+          class="px-6 py-5 border-b border-stone-100 flex items-center justify-between"
+        >
+          <h2
+            class="text-xs font-bold uppercase tracking-[0.15em] text-stone-900"
+          >
+            Keranjang Belanja (<span x-text="cartCount()"></span>)
+          </h2>
+          <button
+            @click="cartOpen = false"
+            class="text-stone-400 hover:text-black transition"
+          >
+            <svg
+              class="h-5 w-5 stroke-[1.5]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <!-- Daftar Item -->
+        <div class="flex-1 overflow-y-auto px-6 divide-y divide-stone-100">
+          <template x-if="cart.length === 0">
+            <div
+              class="h-full flex flex-col items-center justify-center text-stone-400 space-y-3"
+            >
+              <svg
+                class="w-8 h-8 stroke-[1]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 1,0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0,1-1.119-1.243l1.264-12A1.125 1.125 0 0,1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1,1-.75 0 .375.375 0 0,1 .75 0Zm7.5 0a.375.375 0 1,1-.75 0 .375.375 0 0,1 .75 0Z"
+                />
+              </svg>
+              <p class="text-xs tracking-wide font-light">
+                Keranjang Anda masih kosong.
+              </p>
+            </div>
+          </template>
+
+          <template x-for="(item, index) in cart" :key="index">
+            <div class="flex py-5 items-center">
+              <div
+                class="h-20 w-15 flex-shrink-0 overflow-hidden bg-stone-50 border border-stone-100"
+              >
+                <img :src="item.image" class="h-full w-full object-cover" />
+              </div>
+              <div
+                class="ml-4 flex flex-1 flex-col justify-between h-20 py-0.5"
+              >
+                <div>
+                  <div
+                    class="flex justify-between text-xs font-medium text-stone-900 tracking-wide"
+                  >
+                    <h3 class="line-clamp-1" x-text="item.name"></h3>
+                    <p
+                      class="ml-4 font-semibold"
+                      x-text="formatRupiah(item.price * item.quantity)"
+                    ></p>
+                  </div>
+                  <p
+                    class="mt-1 text-[10px] text-stone-400 tracking-wider uppercase"
+                  >
+                    Variant:
+                    <span
+                      class="font-medium text-stone-700"
+                      x-text="item.color"
+                    ></span>
+                    / Size:
+                    <span
+                      class="font-bold text-stone-900"
+                      x-text="item.size"
+                    ></span>
+                  </p>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div
+                    class="flex items-center border border-stone-200 bg-stone-50"
+                  >
+                    <button
+                      @click="updateQuantity(index, -1)"
+                      class="px-2 py-1 text-stone-500 hover:text-black text-xs transition"
+                    >
+                      -
+                    </button>
+                    <span
+                      class="px-2.5 text-[11px] font-semibold text-stone-900 text-center min-w-[20px]"
+                      x-text="item.quantity"
+                      >1</span
+                    >
+                    <button
+                      @click="updateQuantity(index, 1)"
+                      class="px-2 py-1 text-stone-500 hover:text-black text-xs transition"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    @click="removeFromCart(index)"
+                    class="text-stone-400 hover:text-red-500 text-[10px] font-semibold uppercase tracking-widest transition"
+                  >
+                    Hapus
+                  </button>
+                </div>
+              </div>
+            </div>
+          </template>
+          </div>
+          <!-- Total & Checkout -->
+        <div class="border-t border-stone-100 px-6 py-6 bg-stone-50 space-y-4">
+          <div
+            class="flex justify-between text-xs font-bold uppercase tracking-wider text-stone-900"
+          >
+            <p>Subtotal</p>
+            <p class="text-sm font-bold" x-text="formatRupiah(cartTotal())"></p>
+          </div>
+          <p
+            class="text-[11px] text-stone-400 font-light leading-relaxed tracking-wide"
+          >
+            Pesanan Anda akan dikirim langsung ke WhatsApp Admin toko kami untuk
+            konfirmasi stok dan ongkir.
+          </p>
+          <button
+            @click="checkoutWhatsApp()"
+            :disabled="cart.length === 0"
+            class="w-full bg-stone-950 text-white py-4 text-xs font-bold tracking-[0.2em] uppercase hover:bg-stone-800 transition duration-300 disabled:bg-stone-100 disabled:text-stone-300 disabled:cursor-not-allowed"
+          >
+            Checkout Via WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <a
+      href="https://wa.me/6281238810175"
+      target="_blank"
+      class="fixed bottom-6 right-6 bg-[#25D366] text-white p-3.5 rounded-full shadow-lg hover:scale-105 transition-transform duration-200 z-50"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.907h.003c4.366 0 7.92-3.558 7.924-7.929a7.848 7.848 0 0 0-2.32-5.638zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.69-4.98c-.202-.101-1.194-.588-1.378-.654-.184-.066-.318-.099-.452.099-.133.197-.517.654-.634.788-.118.133-.235.149-.437.049-.2-.1-.843-.311-1.605-.991-.592-.528-.992-1.179-1.108-1.378-.118-.199-.012-.307.088-.406.09-.089.199-.232.299-.347.102-.115.135-.195.202-.329.066-.134.034-.251-.017-.352-.051-.101-.452-1.09-.62-1.492-.163-.393-.33-.339-.452-.339h-.385c-.134 0-.352.05-.536.25-.184.2-.703.688-.703 1.683 0 1.001.728 1.968.829 2.101.101.133 1.432 2.187 3.466 3.063.483.208.861.332 1.157.426.486.154.928.131 1.278.08.39-.058 1.194-.488 1.362-1.031.168-.543.168-1.01.118-1.101-.05-.092-.184-.143-.385-.243zm0 0"
+        />
+      </svg>
+    </a>
+
+    <!-- 7. FOOTER -->
+    <footer
+      class="bg-stone-950 text-stone-400 py-16 text-[11px] font-light tracking-wide border-t border-white/5"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12"
+      >
+        <div class="space-y-3">
+          <span class="text-xs font-bold tracking-[0.2em] text-white uppercase"
+            >citiwear.basic</span
+          >
+          <p class="leading-relaxed text-stone-400">
+            Pakaian esensial harian perkotaan dengan kenyamanan tanpa kompromi.
+          </p>
+        </div>
+        <div class="space-y-3">
+          <h4 class="font-bold uppercase tracking-wider text-white">
+            Hubungi Kami
+          </h4>
+          <p class="leading-relaxed text-stone-400">
+            WhatsApp: +62 812-3881-0175<br />Email: citiwear80@gmail.com
+          </p>
+        </div>
+        <div class="space-y-3">
+          <h4 class="font-bold uppercase tracking-wider text-white">
+            Metode Order
+          </h4>
+          <p class="leading-relaxed text-stone-400">
+            Masukkan produk ke keranjang belanja, lalu tekan checkout untuk
+            terhubung langsung ke WhatsApp kami.
+          </p>
+        </div>
+      </div>
+      <div
+        class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-white/5 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4"
+      >
+        <p class="text-stone-500">
+          &copy; 2026 citiwear.basic. Seluruh hak cipta dilindungi.
+        </p>
+        <p class="text-stone-600 text-[10px] tracking-widest uppercase">
+          Premium Urbanwear Essentials
+        </p>
+      </div>
+    </footer>
   </body>
 </html>

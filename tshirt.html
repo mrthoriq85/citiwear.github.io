@@ -106,15 +106,15 @@
             quantity: 1,
             activeIndex: 0,
             images: [
-            { url: 'img/baju/Abu_Misty.jpg', color: 'Abu Misty' },
-            { url: 'img/baju/Hitam.jpg', color: 'Hitam' },
-            { url: 'img/baju/tumpuk.jpg', color: 'Tumpuk' }
+            { url: 'img/baju/Putih.png', color: 'Putih' },
+            { url: 'img/baju/Hitam.png', color: 'Hitam' },
+            { url: 'img/baju/Navy.png', color: 'Navy' }
             ],
             init() {
             // PERBAIKAN: Mengisi data 'selectedProduct' bawaan saat halaman dimuat
             this.selectedProduct = { id: 1, name: 'Cotton Combed 24s Premium T-Shirt', price: 40000 };
             this.selectedColor = 'Abu Misty';
-            this.selectedColorImage = 'img/baju/Abu_Misty.jpg';
+            this.selectedColorImage = 'img/baju//Putih.png';
             }
         }"
         >
@@ -186,17 +186,17 @@
             <div class="mb-6">
             <span class="text-xs font-medium text-stone-500 block mb-2.5">Warna</span>
             <div class="flex flex-wrap gap-2">
-                <template x-for="color in ['Abu Misty', 'Hitam', 'Tumpuk']">
+                <template x-for="color in ['Putih', 'Hitam', 'Navy']">
                 <button
                     @click="
                     selectedColor = color;
-                    selectedColorImage = color === 'Abu Misty' ? 'img/baju/Abu_Misty.jpg' : color === 'Hitam' ? 'img/baju/Hitam.jpg' : 'img/baju/tumpuk.jpg';
+                    selectedColorImage = color === 'Putih' ? 'img/baju/Putih.png' : color === 'Hitam' ? 'img/baju/Hitam.png' : color === 'Navy' ? 'img/baju/Navy.png' : '';
                     const foundIndex = images.findIndex(img => img.color === color);
                     if (foundIndex !== -1) activeIndex = foundIndex;
                     "
                     :class="selectedColor === color ? 'border-stone-950 ring-2 ring-stone-950/20' : 'border-stone-200 hover:border-stone-400'"
                     class="w-8 h-8 rounded-full border transition-all duration-200 cursor-pointer"
-                    :style="{ backgroundColor: color === 'Abu Misty' ? '#B0B0B0' : color === 'Hitam' ? '#000000' : '#F5F5DC' }"
+                    :style="{ backgroundColor: color === 'Putih' ? '#FFFFFF' : color === 'Hitam' ? '#000000' : color === 'Navy' ? '#403F6F' : '' }"
                 ></button>
                 </template>
             </div>
