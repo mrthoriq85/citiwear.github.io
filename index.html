@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>citiwear.basic | Premium Urban Essentials</title>
+    <!-- Tailwind CSS & Alpine.js -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  
+  <body class="bg-[#FBFBFB] text-stone-900 antialiased" x-data="shopApp()">
+    <!-- 1. NOTIFICATION BAR -->
+    <div
+      class="bg-stone-950 text-white py-2.5 text-[10px] font-bold tracking-[0.2em] uppercase border-b border-white/5 overflow-hidden whitespace-nowrap relative flex"
+    >
+      <!-- Animasi Marquee -->
+      <div class="animate-marquee flex gap-12 invisible-scrollbar">
+        <span
+          >⚡ SPECIAL PROMO: GRATIS ONGKIR SELURUH INDONESIA UNTUK PEMBELIAN DI
+          ATAS RP 300.000 ⚡</span
+        >
+        <span
+          >⚡ SPECIAL PROMO: GRATIS ONGKIR SELURUH INDONESIA UNTUK PEMBELIAN DI
+          ATAS RP 300.000 ⚡</span
+        >
+        <span
+          >⚡ SPECIAL PROMO: GRATIS ONGKIR SELURUH INDONESIA UNTUK PEMBELIAN DI
+          ATAS RP 300.000 ⚡</span
+        >
+      </div>
+    </div>
+
+    <!-- 2. NAVIGATION BAR -->
+    <header
+      class="sticky top-0 z-40 bg-white/70 backdrop-blur-md border-b border-stone-100"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <a href="#" class="hover:opacity-80 transition-opacity">
+          <img
+            src="img/logo.png"
+            alt="Logo citiwear.basic"
+            class="h-6 w-auto object-contain"
+          />
+        </a>
+
+        <!-- Filter Kategori Desktop -->
+        <nav
+          class="hidden md:flex space-x-10 text-[11px] font-semibold tracking-[0.2em] uppercase"
+        >
+          <button
+            @click="currentCategory = 'all'"
+            :class="currentCategory === 'all' ? 'text-black border-b border-black' : 'text-stone-400 hover:text-black'"
+            class="pb-1 transition-all duration-300"
+          >
+            All
+          </button>
+          <button
+            @click="currentCategory = 'tshirt'"
+            :class="currentCategory === 'tshirt' ? 'text-black border-b border-black' : 'text-stone-400 hover:text-black'"
+            class="pb-1 transition-all duration-300"
+          >
+            T-Shirts
+          </button>
+          <button
+            @click="currentCategory = 'pants'"
+            :class="currentCategory === 'pants' ? 'text-black border-b border-black' : 'text-stone-400 hover:text-black'"
+            class="pb-1 transition-all duration-300"
+          >
+            Pants
+          </button>
+        </nav>
+
+        <!-- Ikon Keranjang Belanja -->
+        <button
+          @click="cartOpen = true"
+          class="flex items-center space-x-1.5 text-stone-700 hover:text-black transition group relative"
+        >
+          <svg
+            class="h-5 w-5 stroke-[1.25]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 10.5V6a3.75 3.75 0 1,0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0,1-1.119-1.243l1.264-12A1.125 1.125 0 0,1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1,1-.75 0 .375.375 0 0,1 .75 0Zm7.5 0a.375.375 0 1,1-.75 0 .375.375 0 0,1 .75 0Z"
+            />
+          </svg>
+          <span
+            class="text-xs font-medium bg-stone-900 text-white min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[10px]"
+            x-text="cartCount()"
+            >0</span
+          >
+        </button>
+      </div>
+    </header>
+
+    <!-- 3. HERO SECTION -->
+    <section
+      class="hero-section text-white flex items-center min-h-[70vh] relative px-6 overflow-hidden"
+      x-data="{ 
+                activeSlide: 0, 
+                slides: [
+                    'img/banner1.png', 
+                    'img/banner2.jpg'
+                ],
+                init() { 
+                    setInterval(() => { 
+                        this.activeSlide = (this.activeSlide + 1) % this.slides.length; 
+                    }, 5000);
+                } 
+            }"
+    >
+      <template x-for="(slide, index) in slides" :key="index">
+        <div
+          class="absolute inset-0 bg-cover bg-center z-0"
+          :style="'background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url(\'' + slide + '\')'"
+          x-show="activeSlide === index"
+          x-transition:enter="transition opacity duration-1000 ease-in-out"
+          x-transition:enter-start="opacity-0"
+          x-transition:enter-end="opacity-100"
+          x-transition:leave="transition opacity duration-1000 ease-in-out"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0"
+        ></div>
+      </template>
+
+      <div class="max-w-7xl mx-auto w-full relative z-10 py-12">
+        <div class="max-w-xl">
+          <h1
+            class="text-4xl sm:text-6xl font-light tracking-[0.08em] uppercase mb-4 leading-[1.1]"
+          >
+            Simplicity <br /><span class="font-bold">is Bold.</span>
+          </h1>
+          <p
+            class="text-stone-200 text-xs sm:text-sm font-light tracking-wide leading-relaxed mb-10 max-w-md"
+          >
+            Koleksi pakaian basic perkotaan dengan material premium berat (<span
+              class="italic font-normal text-white"
+              >heavyweight</span
+            >) dan siluet potongan modern fit.
+          </p>
+          <a
+            href="#catalog"
+            class="btn-premium inline-block border border-white text-white text-[11px] font-semibold tracking-[0.2em] uppercase px-10 py-4 relative overflow-hidden transition-colors duration-300"
+          >
+            <span class="relative z-20">Jelajahi Produk</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- INDIKATOR SLIDER -->
+      <div class="absolute bottom-6 left-6 flex space-x-3 z-20">
+        <template x-for="(slide, index) in slides" :key="index">
+          <button
+            @click="activeSlide = index"
+            :class="activeSlide === index ? 'bg-white w-8' : 'bg-white/30 w-2'"
+            class="h-[2px] transition-all duration-700 focus:outline-none"
+          ></button>
+        </template>
+      </div>
+    </section>
+
+    <!-- 4. PRODUK KATALOG + FILTER -->
+    <main id="catalog" class="max-w-7xl mx-auto px-6 py-20">
+      <div
+        class="border-b border-stone-200/60 pb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12"
+      >
+        <div>
+          <h2
+            class="text-xl font-bold tracking-[0.1em] uppercase text-stone-900"
+          >
+            Katalog Produk
+          </h2>
+          <p class="mt-1.5 text-xs text-stone-400 font-light tracking-wide">
+            Menampilkan produk dengan desain minimalis esensial.
+          </p>
+        </div>
+        <!-- Filter Dropdown Mobile -->
+        <div class="mt-6 sm:mt-0 md:hidden w-full sm:w-auto">
+          <select
+            x-model="currentCategory"
+            class="w-full bg-white border border-stone-200 text-stone-800 rounded-none py-2.5 px-4 text-xs font-semibold tracking-wider uppercase focus:outline-none focus:border-black appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2378716c%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_auto] bg-[right_16px_center] bg-no-repeat"
+          >
+            <option value="all">Semua Kategori</option>
+            <option value="tshirt">T-Shirts</option>
+            <option value="pants">Pants</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Grid Katalog -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-14">
+        <template x-for="product in filteredProducts()" :key="product.id">
+          <div
+            class="group flex flex-col h-full bg-white border border-stone-100 p-3 transition-all duration-300 hover:shadow-md"
+          >
+            <!-- Image Wrapper dengan Aspek Rasio Presisi -->
+            <div
+              class="w-full aspect-[3/4] bg-stone-50 overflow-hidden relative cursor-pointer"
+              @click="openQuickView(product)"
+            >
+              <img
+                :src="product.image"
+                :alt="product.name"
+                class="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out"
+              />
+              <div
+                class="absolute inset-0 bg-stone-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3"
+              >
+                <span
+                  class="bg-white/95 backdrop-blur-sm text-stone-900 text-[10px] tracking-[0.15em] uppercase font-semibold px-3 py-3 w-full text-center shadow-sm transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
+                  >Quick View</span
+                >
+              </div>
+            </div>
+
+            <div class="mt-4 flex flex-col flex-grow px-1">
+              <span
+                class="text-[9px] uppercase font-bold tracking-[0.2em] text-stone-400 mb-1"
+                x-text="product.categoryName"
+              ></span>
+              <h3
+                class="text-xs font-medium text-stone-800 hover:text-black cursor-pointer tracking-wide line-clamp-1 transition-colors"
+                x-text="product.name"
+                @click="openQuickView(product)"
+              ></h3>
+              <p
+                class="text-[11px] text-stone-400 font-light mt-0.5 line-clamp-1"
+                x-text="product.colorOptions.map(c => c.name).join(' · ')"
+              ></p>
+              <p
+                class="text-xs font-semibold mt-2.5 text-stone-900 tracking-wide"
+                x-text="formatRupiah(product.price)"
+              ></p>
+
+              <!-- <div class="mt-4 pt-3 border-t border-stone-100">
+                <button
+                  @click="openQuickView(product)"
+                  class="w-full bg-stone-50 border border-stone-200 text-stone-800 text-[10px] font-bold uppercase tracking-[0.15em] py-2.5 hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300"
+                >
+                  + Add To Cart
+                </button>
+              </div> -->
+            </div>
+          </div>
+        </template>
+      </div>
+    </main>
+
+    <!-- 5. SIDEBAR KERANJANG BELANJA -->
+    <div class="relative z-50" x-show="cartOpen" x-transition x-cloak>
+      <div
+        class="fixed inset-0 bg-stone-950/40 backdrop-blur-xs"
+        @click="cartOpen = false"
+      ></div>
+      <div
+        class="fixed inset-y-0 right-0 w-full max-w-[420px] bg-white flex flex-col shadow-2xl h-full"
+        x-transition:enter="transition ease-out duration-400 transform"
+        x-transition:enter-start="translate-x-full"
+        x-transition:enter-end="translate-x-0"
+        x-transition:leave="transition ease-in duration-300 transform"
+        x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="translate-x-full"
+      >
+        <!-- Header Keranjang -->
+        <div
+          class="px-6 py-5 border-b border-stone-100 flex items-center justify-between"
+        >
+          <h2
+            class="text-xs font-bold uppercase tracking-[0.15em] text-stone-900"
+          >
+            Keranjang Belanja (<span x-text="cartCount()"></span>)
+          </h2>
+          <button
+            @click="cartOpen = false"
+            class="text-stone-400 hover:text-black transition"
+          >
+            <svg
+              class="h-5 w-5 stroke-[1.5]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Daftar Item -->
+        <div class="flex-1 overflow-y-auto px-6 divide-y divide-stone-100">
+          <template x-if="cart.length === 0">
+            <div
+              class="h-full flex flex-col items-center justify-center text-stone-400 space-y-3"
+            >
+              <svg
+                class="w-8 h-8 stroke-[1]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 1,0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0,1-1.119-1.243l1.264-12A1.125 1.125 0 0,1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1,1-.75 0 .375.375 0 0,1 .75 0Zm7.5 0a.375.375 0 1,1-.75 0 .375.375 0 0,1 .75 0Z"
+                />
+              </svg>
+              <p class="text-xs tracking-wide font-light">
+                Keranjang Anda masih kosong.
+              </p>
+            </div>
+          </template>
+
+          <template x-for="(item, index) in cart" :key="index">
+            <div class="flex py-5 items-center">
+              <div
+                class="h-20 w-15 flex-shrink-0 overflow-hidden bg-stone-50 border border-stone-100"
+              >
+                <img :src="item.image" class="h-full w-full object-cover" />
+              </div>
+              <div
+                class="ml-4 flex flex-1 flex-col justify-between h-20 py-0.5"
+              >
+                <div>
+                  <div
+                    class="flex justify-between text-xs font-medium text-stone-900 tracking-wide"
+                  >
+                    <h3 class="line-clamp-1" x-text="item.name"></h3>
+                    <p
+                      class="ml-4 font-semibold"
+                      x-text="formatRupiah(item.price * item.quantity)"
+                    ></p>
+                  </div>
+                  <p
+                    class="mt-1 text-[10px] text-stone-400 tracking-wider uppercase"
+                  >
+                    Variant:
+                    <span
+                      class="font-medium text-stone-700"
+                      x-text="item.color"
+                    ></span>
+                    / Size:
+                    <span
+                      class="font-bold text-stone-900"
+                      x-text="item.size"
+                    ></span>
+                  </p>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div
+                    class="flex items-center border border-stone-200 bg-stone-50"
+                  >
+                    <button
+                      @click="updateQuantity(index, -1)"
+                      class="px-2 py-1 text-stone-500 hover:text-black text-xs transition"
+                    >
+                      -
+                    </button>
+                    <span
+                      class="px-2.5 text-[11px] font-semibold text-stone-900 text-center min-w-[20px]"
+                      x-text="item.quantity"
+                      >1</span
+                    >
+                    <button
+                      @click="updateQuantity(index, 1)"
+                      class="px-2 py-1 text-stone-500 hover:text-black text-xs transition"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    @click="removeFromCart(index)"
+                    class="text-stone-400 hover:text-red-500 text-[10px] font-semibold uppercase tracking-widest transition"
+                  >
+                    Hapus
+                  </button>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- Total & Checkout -->
+        <div class="border-t border-stone-100 px-6 py-6 bg-stone-50 space-y-4">
+          <div
+            class="flex justify-between text-xs font-bold uppercase tracking-wider text-stone-900"
+          >
+            <p>Subtotal</p>
+            <p class="text-sm font-bold" x-text="formatRupiah(cartTotal())"></p>
+          </div>
+          <p
+            class="text-[11px] text-stone-400 font-light leading-relaxed tracking-wide"
+          >
+            Pesanan Anda akan dikirim langsung ke WhatsApp Admin toko kami untuk
+            konfirmasi stok dan ongkir.
+          </p>
+          <button
+            @click="checkoutWhatsApp()"
+            :disabled="cart.length === 0"
+            class="w-full bg-stone-950 text-white py-4 text-xs font-bold tracking-[0.2em] uppercase hover:bg-stone-800 transition duration-300 disabled:bg-stone-100 disabled:text-stone-300 disabled:cursor-not-allowed"
+          >
+            Checkout Via WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. MODAL QUICK VIEW -->
+    <div class="relative z-50" x-show="quickViewOpen" x-transition x-cloak>
+      <div
+        class="fixed inset-0 bg-stone-950/50 backdrop-blur-xs"
+        @click="quickViewOpen = false"
+      ></div>
+      <div
+        class="fixed inset-0 overflow-y-auto flex items-center justify-center p-4"
+      >
+        <div
+          class="bg-white max-w-2xl w-full relative shadow-2xl grid grid-cols-1 md:grid-cols-2 border border-stone-100" style="max-height: 100vh; overflow-y: auto;"
+          @click.away="quickViewOpen = false"
+        >
+          <button
+            @click="quickViewOpen = false"
+            class="absolute top-4 right-4 text-stone-400 hover:text-black transition z-10"
+          >
+            <svg
+              class="h-5 w-5 stroke-[1.5]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          <!-- Foto Produk Dinamis -->
+          <div class="aspect-[3/4] bg-stone-50 overflow-hidden">
+            <img
+              :src="selectedColorImage || selectedProduct.image"
+              class="w-full h-full object-cover transition-all duration-500"
+            />
+          </div>
+
+          <div
+            class="p-8 flex flex-col justify-between"
+            style="-webkit-overflow-scrolling: touch"; height: 90%; overflow-y: auto;
+          >
+            <div>
+              <span
+                class="text-[9px] uppercase font-bold tracking-[0.2em] text-stone-400"
+                x-text="selectedProduct.categoryName"
+              ></span>
+              <h2
+                class="text-base font-bold text-stone-900 tracking-wide mt-1"
+                x-text="selectedProduct.name"
+              ></h2>
+              <p
+                class="text-sm font-semibold text-stone-800 tracking-wide mt-2"
+                x-text="formatRupiah(selectedProduct.price)"
+              ></p>
+
+              <div class="mt-5 pt-4 border-t border-stone-100">
+                <h4
+                  class="text-[10px] font-bold uppercase tracking-wider text-stone-400"
+                >
+                  Deskripsi:
+                </h4>
+                <p
+                  class="text-xs text-stone-600 font-light mt-1.5 leading-relaxed tracking-wide"
+                  x-text="selectedProduct.desc"
+                ></p>
+              </div>
+
+              <!-- Opsi Pilihan Warna Modern Swatch -->
+              <div class="mt-5">
+                <h4
+                  class="text-[10px] font-bold uppercase tracking-wider text-stone-400"
+                >
+                  Pilih Warna:
+                  <span
+                    class="text-stone-900 font-semibold"
+                    x-text="selectedColor"
+                  ></span>
+                </h4>
+                <div class="flex flex-wrap gap-1.5 mt-2">
+                  <template
+                    x-for="color in selectedProduct.colorOptions"
+                    :key="color.name"
+                  >
+                    <button
+                      @click="selectedColor = color.name; selectedColorImage = color.image"
+                      :class="selectedColor === color.name ? 'border-stone-950 bg-stone-950 text-white shadow-xs' : 'border-stone-200 text-stone-700 hover:border-stone-400'"
+                      class="border text-[10px] font-medium px-3 py-1.5 transition-all duration-300 tracking-wide uppercase"
+                    >
+                      <span x-text="color.name"></span>
+                    </button>
+                  </template>
+                </div>
+              </div>
+
+              <!-- Opsi Pilihan Ukuran & Size Guide -->
+              <div class="mt-5" x-data="{ showSizeGuide: false }">
+                <div class="flex items-center justify-between">
+                  <h4
+                    class="text-[10px] font-bold uppercase tracking-wider text-stone-400"
+                  >
+                    Pilih Ukuran:
+                  </h4>
+                  <!-- Tombol Pemicu Gambar Panduan Ukuran -->
+                  <button
+                    @click="showSizeGuide = !showSizeGuide"
+                    type="button"
+                    class="text-[10px] font-semibold text-stone-500 hover:text-black tracking-wide flex items-center gap-1 transition-colors"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 stroke-[1.5]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z"
+                      />
+                    </svg>
+                    Size Guide
+                  </button>
+                </div>
+
+                <!-- AREA GAMBAR PANDUAN UKURAN (Akan slide down / muncul dengan smooth saat tombol diklik) -->
+                <div
+                  x-show="showSizeGuide"
+                  x-transition:enter="transition ease-out duration-300"
+                  x-transition:enter-start="opacity-0 max-h-0 overflow-hidden"
+                  x-transition:enter-end="opacity-100 max-h-[300px] overflow-hidden"
+                  x-transition:leave="transition ease-in duration-200"
+                  x-transition:leave-start="opacity-100 max-h-[300px] overflow-hidden"
+                  x-transition:leave-end="opacity-0 max-h-0 overflow-hidden"
+                  class="mt-3 border border-stone-100 bg-stone-50 p-2 relative group"
+                >
+                  <!-- Gambar chart ukuran. Anda tinggal mengganti src ke file gambar panduan milik Anda -->
+                  <!-- Contoh: 'img/size-chart-tshirt.jpg' untuk kaos atau dinamis sesuai kategori jika diperlukan -->
+                  <img
+                    :src="selectedProduct.categoryName === 'T-Shirt' ? 'img/sizependek.jpg' : selectedProduct.categoryName === 'Long T-Shirt' ? 'img/sizepanjang.jpg' : selectedProduct.categoryName === 'Striped T-Shirt' ? 'img/sizependek.jpg' : selectedProduct.categoryName === 'Pants' ? 'img/sizecelana.png' : 'img/sizependek.png'"
+                    alt="Panduan Ukuran Citiwear"
+                    class="w-full h-auto object-contain mx-auto max-h-[220px]"
+                  />
+
+                  <p
+                    class="text-[9px] text-stone-400 text-center mt-1.5 tracking-wide font-light"
+                  >
+                    *Toleransi perbedaan ukuran 1-2 cm karena produksi massal.
+                  </p>
+                </div>
+
+                <!-- Pilihan Tombol Ukuran (Fitur Utama Anda Tetap Berjalan) -->
+                <div class="grid grid-cols-4 gap-2 mt-2">
+                  <template x-for="sz in ['s', 'm', 'l', 'xl']">
+                    <button
+                      @click="selectedSize = sz"
+                      :class="selectedSize === sz ? 'bg-stone-950 text-white border-stone-950' : 'bg-white text-stone-800 border-stone-200 hover:border-stone-900'"
+                      class="border py-2 text-[11px] font-semibold uppercase tracking-widest transition-colors duration-300"
+                      x-text="sz"
+                    ></button>
+                  </template>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <button
+                @click="addToCartFromModal()"
+                class="w-full bg-stone-950 text-white py-3.5 text-xs font-bold tracking-[0.2em] uppercase hover:bg-stone-800 transition duration-300"
+              >
+                Tambah Ke Keranjang
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6.5 SECTION: DENAH & LOKASI TOKO -->
+    <section class="border-t border-stone-200/60 bg-white py-24 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
+          <!-- Info Detail Toko (Kiri) -->
+          <div class="space-y-6 lg:pr-6">
+            <span
+              class="text-[9px] uppercase font-bold tracking-[0.2em] text-stone-400"
+              >Kunjungi Toko Fisik</span
+            >
+            <h2
+              class="text-2xl font-bold tracking-[0.05em] uppercase text-stone-900"
+            >
+              Citiwear Basic Home
+            </h2>
+
+            <div
+              class="space-y-5 text-xs text-stone-600 font-light tracking-wide leading-relaxed"
+            >
+              <div class="border-b border-stone-100 pb-4">
+                <h4
+                  class="font-bold text-stone-900 uppercase text-[10px] tracking-wider mb-1"
+                >
+                  Alamat :
+                </h4>
+                <p class="text-stone-500">
+                  WPXR+M79, Pojok, Pogalan, Kec. Pogalan, Kabupaten Trenggalek,
+                  Jawa Timur 66371
+                </p>
+              </div>
+
+              <div>
+                <h4
+                  class="font-bold text-stone-900 uppercase text-[10px] tracking-wider mb-1"
+                >
+                  Jam Operasional :
+                </h4>
+                <p class="text-stone-500">
+                  Senin – Minggu: 10.00 WIB – 22.00 WIB
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="https://maps.app.goo.gl/mNinkWTJN4UHbaoc8"
+              target="_blank"
+              class="w-full sm:w-auto inline-flex items-center justify-center border border-stone-900 text-stone-900 text-[11px] font-semibold tracking-[0.15em] uppercase px-8 py-4 hover:bg-stone-900 hover:text-white transition duration-300"
+            >
+              <svg
+                class="w-3.5 h-3.5 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                />
+              </svg>
+              Petunjuk Arah (Maps)
+            </a>
+          </div>
+
+          <!-- Denah Box Interaktif (Kanan) -->
+          <div
+            class="lg:col-span-2 w-full h-[380px] bg-stone-50 border border-stone-200/60 overflow-hidden relative group"
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.4954605332236!2d111.73815567405413!3d-8.050835580418203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7905de3a30216b%3A0x59c85f9cbc26fda6!2sCitiwear.basic!5e0!3m2!1sid!2sid!4v1783080797791!5m2!1sid!2sid"
+              class="w-full h-full border-0 grayscale opacity-85 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 cubic-bezier(0.25, 1, 0.5, 1)"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            >
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <a
+      href="https://wa.me/6281238810175"
+      target="_blank"
+      class="fixed bottom-6 right-6 bg-[#25D366] text-white p-3.5 rounded-full shadow-lg hover:scale-105 transition-transform duration-200 z-50"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.907h.003c4.366 0 7.92-3.558 7.924-7.929a7.848 7.848 0 0 0-2.32-5.638zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.69-4.98c-.202-.101-1.194-.588-1.378-.654-.184-.066-.318-.099-.452.099-.133.197-.517.654-.634.788-.118.133-.235.149-.437.049-.2-.1-.843-.311-1.605-.991-.592-.528-.992-1.179-1.108-1.378-.118-.199-.012-.307.088-.406.09-.089.199-.232.299-.347.102-.115.135-.195.202-.329.066-.134.034-.251-.017-.352-.051-.101-.452-1.09-.62-1.492-.163-.393-.33-.339-.452-.339h-.385c-.134 0-.352.05-.536.25-.184.2-.703.688-.703 1.683 0 1.001.728 1.968.829 2.101.101.133 1.432 2.187 3.466 3.063.483.208.861.332 1.157.426.486.154.928.131 1.278.08.39-.058 1.194-.488 1.362-1.031.168-.543.168-1.01.118-1.101-.05-.092-.184-.143-.385-.243zm0 0"
+        />
+      </svg>
+    </a>
+
+    <!-- 7. FOOTER -->
+    <footer
+      class="bg-stone-950 text-stone-400 py-16 text-[11px] font-light tracking-wide border-t border-white/5"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12"
+      >
+        <div class="space-y-3">
+          <span class="text-xs font-bold tracking-[0.2em] text-white uppercase"
+            >citiwear.basic</span
+          >
+          <p class="leading-relaxed text-stone-400">
+            Pakaian esensial harian perkotaan dengan kenyamanan tanpa kompromi.
+          </p>
+        </div>
+        <div class="space-y-3">
+          <h4 class="font-bold uppercase tracking-wider text-white">
+            Hubungi Kami
+          </h4>
+          <p class="leading-relaxed text-stone-400">
+            WhatsApp: +62 812-3881-0175<br />Email: citiwear80@gmail.com
+          </p>
+        </div>
+        <div class="space-y-3">
+          <h4 class="font-bold uppercase tracking-wider text-white">
+            Metode Order
+          </h4>
+          <p class="leading-relaxed text-stone-400">
+            Masukkan produk ke keranjang belanja, lalu tekan checkout untuk
+            terhubung langsung ke WhatsApp kami.
+          </p>
+        </div>
+      </div>
+      <div
+        class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-white/5 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4"
+      >
+        <p class="text-stone-500">
+          &copy; 2026 citiwear.basic. Seluruh hak cipta dilindungi.
+        </p>
+        <p class="text-stone-600 text-[10px] tracking-widest uppercase">
+          Premium Urbanwear Essentials
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

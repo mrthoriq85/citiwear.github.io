@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  scroll-behavior: smooth;
+  letter-spacing: 0.025em;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+/* Custom Utilities */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Modifikasi animasi zoom transisi slide hero agar selembut website mode profesional */
+.hero-section div[x-show="activeSlide === index"] {
+  animation: luxuryZoom 5.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes luxuryZoom {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* --- MARQUEE PROMO ANIMATION --- */
+.animate-marquee {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marqueeContinuous 25s linear infinite;
+}
+
+@keyframes marqueeContinuous {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
+
+/* Tombol Premium Minimalis */
+.btn-premium {
+  position: relative;
+  background-color: transparent;
+  z-index: 1;
+  transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-premium::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: #ffffff;
+  z-index: -1;
+  transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-premium:hover {
+  color: #0c0a09 !important;
+}
+
+.btn-premium:hover::before {
+  height: 100%;
+}
+
+/* Scrollbar Custom Minimalis */
+div::-webkit-scrollbar {
+  width: 3px;
+}
+div::-webkit-scrollbar-track {
+  background: #f5f5f4;
+}
+div::-webkit-scrollbar-thumb {
+  background: #e7e5e4;
+}
+div::-webkit-scrollbar-thumb:hover {
+  background: #78716c;
+}
+
+/* Styling Tabel Panduan Ukuran */
+.size-chart {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.size-chart th,
+.size-chart td {
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  text-align: center;
+}
+
+.size-chart th {
+  background-color: #f8f9fa;
+  color: #666;
+}
+
+.size-chart tr:nth-child(even) {
+  background-color: #fafafa;
+}
+.title-chart {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #666;
+  font-size: 0.95rem;
+}
