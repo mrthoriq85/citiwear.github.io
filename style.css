@@ -123,3 +123,142 @@ div::-webkit-scrollbar-thumb:hover {
   color: #666;
   font-size: 0.95rem;
 }
+
+.container {
+  width: 90%;
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* Feature */
+
+.feature {
+  background: white;
+  padding: 35px 0;
+  border-top: 1px solid #eee;
+}
+
+.feature .container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.item {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-left: 35px;
+}
+
+.item i {
+  font-size: 28px;
+  color: #b08d57;
+}
+
+.item h4 {
+  margin-bottom: 5px;
+}
+
+.item small {
+  color: #777;
+}
+
+@media (max-width: 900px) {
+  nav .container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hero .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  p {
+    margin: auto auto 30px;
+  }
+
+  h1 {
+    font-size: 45px;
+  }
+
+  .feature .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .feature .container {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+}
+
+.testimonial-section {
+  background-color: #ffffff;
+  padding: 3rem 1rem;
+  border-top: 1px solid #eee;
+}
+
+/* Container slider dengan Scroll Snap */
+.testimonial-slider {
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  scrollbar-width: thin;
+}
+
+/* Custom Scrollbar */
+.testimonial-slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+.testimonial-slider::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.testimonial-slider::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.testimonial-slider::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Card murni gambar */
+.testimonial-card-img {
+  flex: 0 0 260px; /* Ukuran lebar tiap gambar */
+  scroll-snap-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+.testimonial-card-img:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-card-img img {
+  width: 100%;
+  height: 380px; /* Tinggi gambar testimoni/screenshot */
+  object-fit: cover;
+  display: block;
+}

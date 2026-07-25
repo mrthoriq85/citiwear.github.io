@@ -11,98 +11,16 @@
     ></script>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
+    <script defer src="include.js"></script>
   </head>
 
   <body class="bg-[#FBFBFB] text-stone-900 antialiased" x-data="shopApp()">
-    <div
-      class="bg-stone-950 text-white py-2.5 text-[10px] font-bold tracking-[0.2em] uppercase border-b border-white/5 overflow-hidden whitespace-nowrap relative flex"
-    >
-      <div class="animate-marquee flex gap-12 invisible-scrollbar">
-        <span
-          >⚡ SPECIAL PROMO: GRATIS ONGKIR SELURUH INDONESIA UNTUK PEMBELIAN DI
-          ATAS RP 300.000 ⚡</span
-        >
-        <span
-          >⚡ SPECIAL PROMO: GRATIS ONGKIR SELURUH INDONESIA UNTUK PEMBELIAN DI
-          ATAS RP 300.000 ⚡</span
-        >
-        <span
-          >⚡ SPECIAL PROMO: GRATIS ONGKIR SELURUH INDONESIA UNTUK PEMBELIAN DI
-          ATAS RP 300.000 ⚡</span
-        >
-      </div>
-    </div>
-
-    <header
-      class="sticky top-0 z-40 bg-white/70 backdrop-blur-md border-b border-stone-100"
-    >
-      <div
-        class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
-      >
-        <a href="index.html" class="hover:opacity-80 transition-opacity">
-          <img
-            src="img/logo.png"
-            alt="Logo citiwear.basic"
-            class="h-6 w-auto object-contain"
-          />
-        </a>
-
-        <nav
-          class="hidden md:flex space-x-10 text-[11px] font-semibold tracking-[0.2em] uppercase"
-        >
-          <button
-            @click="currentCategory = 'all'"
-            :class="currentCategory === 'all' ? 'text-black border-b border-black' : 'text-stone-400 hover:text-black'"
-            class="pb-1 transition-all duration-300"
-          >
-            All
-          </button>
-          <button
-            @click="currentCategory = 'tshirt'"
-            :class="currentCategory === 'tshirt' ? 'text-black border-b border-black' : 'text-stone-400 hover:text-black'"
-            class="pb-1 transition-all duration-300"
-          >
-            T-Shirts
-          </button>
-          <button
-            @click="currentCategory = 'pants'"
-            :class="currentCategory === 'pants' ? 'text-black border-b border-black' : 'text-stone-400 hover:text-black'"
-            class="pb-1 transition-all duration-300"
-          >
-            Pants
-          </button>
-        </nav>
-
-        <!-- Ikon Keranjang Belanja -->
-        <button
-          @click="cartOpen = true"
-          class="flex items-center space-x-1.5 text-stone-700 hover:text-black transition group relative"
-        >
-          <svg
-            class="h-5 w-5 stroke-[1.25]"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 10.5V6a3.75 3.75 0 1,0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0,1-1.119-1.243l1.264-12A1.125 1.125 0 0,1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1,1-.75 0 .375.375 0 0,1 .75 0Zm7.5 0a.375.375 0 1,1-.75 0 .375.375 0 0,1 .75 0Z"
-            />
-          </svg>
-          <span
-            class="text-xs font-medium bg-stone-900 text-white min-w-[18px] h-[18px] flex items-center justify-center rounded-full text-[10px]"
-            x-text="cartCount()"
-            >0</span
-          >
-        </button>
-      </div>
-    </header>
+    <div id="header"></div>
 
     <div
-        class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-start"
-        style="margin: 4rem auto; padding: 0 1.5rem"
-        x-data="{ 
+      class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-start"
+      style="margin: 4rem auto; padding: 0 1.5rem"
+      x-data="{ 
             quantity: 1,
             activeIndex: 0,
             images: [
@@ -117,125 +35,175 @@
             this.selectedColorImage = 'img/baju//Putih.png';
             }
         }"
-        >
-        <div class="w-full flex flex-col gap-4">
-            <div
-            class="w-full bg-stone-50 flex justify-center items-center aspect-square rounded-xl relative group overflow-hidden cursor-zoom-in"
-            x-data="{ origin: 'center' }"
-            @mousemove="
+    >
+      <div class="w-full flex flex-col gap-4">
+        <div
+          class="w-full bg-stone-50 flex justify-center items-center aspect-square rounded-xl relative group overflow-hidden cursor-zoom-in"
+          x-data="{ origin: 'center' }"
+          @mousemove="
                 const rect = $el.getBoundingClientRect();
                 const x = ((event.clientX - rect.left) / rect.width) * 100;
                 const y = ((event.clientY - rect.top) / rect.height) * 100;
                 origin = `${x}% ${y}%`;
             "
-            @mouseleave="origin = 'center'"
-            >
-            <img
-                :src="images[activeIndex].url"
-                alt="Cotton Combed 24s Premium T-Shirt"
-                class="w-full h-full object-contain mix-blend-multiply transition-transform duration-200 ease-out p-8 transform group-hover:scale-175"
-                :style="{ transformOrigin: origin }"
-            />
+          @mouseleave="origin = 'center'"
+        >
+          <img
+            :src="images[activeIndex].url"
+            alt="Cotton Combed 24s Premium T-Shirt"
+            class="w-full h-full object-contain mix-blend-multiply transition-transform duration-200 ease-out p-8 transform group-hover:scale-175"
+            :style="{ transformOrigin: origin }"
+          />
 
-            <button
-                @click="if(activeIndex > 0) { activeIndex--; selectedColor = images[activeIndex].color }"
-                x-show="activeIndex > 0"
-                class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm text-stone-800 hover:bg-stone-900 hover:text-white w-9 h-9 flex items-center justify-center rounded-full shadow-md transition-all duration-200 cursor-pointer z-10"
+          <button
+            @click="if(activeIndex > 0) { activeIndex--; selectedColor = images[activeIndex].color }"
+            x-show="activeIndex > 0"
+            class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm text-stone-800 hover:bg-stone-900 hover:text-white w-9 h-9 flex items-center justify-center rounded-full shadow-md transition-all duration-200 cursor-pointer z-10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="currentColor"
+              class="w-4 h-4"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
-            </button>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+          </button>
 
-            <button
-                @click="if(activeIndex < images.length - 1) { activeIndex++; selectedColor = images[activeIndex].color }"
-                x-show="activeIndex < images.length - 1"
-                class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm text-stone-800 hover:bg-stone-900 hover:text-white w-9 h-9 flex items-center justify-center rounded-full shadow-md transition-all duration-200 cursor-pointer z-10"
+          <button
+            @click="if(activeIndex < images.length - 1) { activeIndex++; selectedColor = images[activeIndex].color }"
+            x-show="activeIndex < images.length - 1"
+            class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm text-stone-800 hover:bg-stone-900 hover:text-white w-9 h-9 flex items-center justify-center rounded-full shadow-md transition-all duration-200 cursor-pointer z-10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="currentColor"
+              class="w-4 h-4"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-            </button>
-            </div>
-
-            <div class="flex justify-center gap-2">
-            <template x-for="(image, index) in images">
-                <button
-                @click="activeIndex = index; selectedColor = image.color"
-                :class="activeIndex === index ? 'w-6 bg-stone-800' : 'w-2 bg-stone-300'"
-                class="h-2 rounded-full transition-all duration-300 cursor-pointer"
-                ></button>
-            </template>
-            </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </button>
         </div>
 
-        <div class="flex flex-col">
-            <span class="text-[10px] tracking-[0.2em] uppercase font-semibold text-stone-400 mb-1">CITIWEAR.BASIC</span>
+        <div class="flex justify-center gap-2">
+          <template x-for="(image, index) in images">
+            <button
+              @click="activeIndex = index; selectedColor = image.color"
+              :class="activeIndex === index ? 'w-6 bg-stone-800' : 'w-2 bg-stone-300'"
+              class="h-2 rounded-full transition-all duration-300 cursor-pointer"
+            ></button>
+          </template>
+        </div>
+      </div>
 
-            <h1 class="text-3xl font-medium tracking-wide text-stone-800 mb-4">
-            Cotton Combed 24s Premium T-Shirt
-            </h1>
+      <div class="flex flex-col">
+        <span
+          class="text-[10px] tracking-[0.2em] uppercase font-semibold text-stone-400 mb-1"
+          >CITIWEAR.BASIC</span
+        >
 
-            <div class="flex items-center gap-3 mb-6">
-            <span class="text-xs line-through text-stone-400">Rp 69.000,00 IDR</span>
-            <span class="text-sm font-medium text-stone-800">Rp 40.000,00 IDR</span>
-            </div>
+        <h1 class="text-3xl font-medium tracking-wide text-stone-800 mb-4">
+          Cotton Combed 24s Premium T-Shirt
+        </h1>
 
-            <hr class="border-stone-100 mb-6" />
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-xs line-through text-stone-400"
+            >Rp 69.000,00 IDR</span
+          >
+          <span class="text-sm font-medium text-stone-800"
+            >Rp 40.000,00 IDR</span
+          >
+        </div>
 
-            <div class="mb-6">
-            <span class="text-xs font-medium text-stone-500 block mb-2.5">Warna</span>
-            <div class="flex flex-wrap gap-2">
-                <template x-for="color in ['Putih', 'Hitam', 'Navy']">
-                <button
-                    @click="
+        <hr class="border-stone-100 mb-6" />
+
+        <div class="mb-6">
+          <span class="text-xs font-medium text-stone-500 block mb-2.5"
+            >Warna</span
+          >
+          <div class="flex flex-wrap gap-2">
+            <template x-for="color in ['Putih', 'Hitam', 'Navy']">
+              <button
+                @click="
                     selectedColor = color;
                     selectedColorImage = color === 'Putih' ? 'img/baju/Putih.png' : color === 'Hitam' ? 'img/baju/Hitam.png' : color === 'Navy' ? 'img/baju/Navy.png' : '';
                     const foundIndex = images.findIndex(img => img.color === color);
                     if (foundIndex !== -1) activeIndex = foundIndex;
                     "
-                    :class="selectedColor === color ? 'border-stone-950 ring-2 ring-stone-950/20' : 'border-stone-200 hover:border-stone-400'"
-                    class="w-8 h-8 rounded-full border transition-all duration-200 cursor-pointer"
-                    :style="{ backgroundColor: color === 'Putih' ? '#FFFFFF' : color === 'Hitam' ? '#000000' : color === 'Navy' ? '#403F6F' : '' }"
-                ></button>
-                </template>
-            </div>
-            </div>
+                :class="selectedColor === color ? 'border-stone-950 ring-2 ring-stone-950/20' : 'border-stone-200 hover:border-stone-400'"
+                class="w-8 h-8 rounded-full border transition-all duration-200 cursor-pointer"
+                :style="{ backgroundColor: color === 'Putih' ? '#FFFFFF' : color === 'Hitam' ? '#000000' : color === 'Navy' ? '#403F6F' : '' }"
+              ></button>
+            </template>
+          </div>
+        </div>
 
-            <div class="mb-6">
-            <span class="text-xs font-medium text-stone-500 block mb-2.5">Size</span>
-            <div class="flex flex-wrap gap-2">
-                <template x-for="size in ['S', 'M', 'L', 'XL']">
-                <button
-                   @click="selectedSize = size"
-                    :class="selectedSize === size ? 'bg-stone-950 text-white border-stone-950' : 'bg-white text-stone-800 border-stone-200 hover:border-stone-400'"
-                    class="w-12 h-8 flex items-center justify-center text-xs font-medium border rounded-full transition-colors duration-200 cursor-pointer uppercase"
-                    x-text="size"
-                ></button>
-                </template>
-            </div>
-            </div>
+        <div class="mb-6">
+          <span class="text-xs font-medium text-stone-500 block mb-2.5"
+            >Size</span
+          >
+          <div class="flex flex-wrap gap-2">
+            <template x-for="size in ['S', 'M', 'L', 'XL']">
+              <button
+                @click="selectedSize = size"
+                :class="selectedSize === size ? 'bg-stone-950 text-white border-stone-950' : 'bg-white text-stone-800 border-stone-200 hover:border-stone-400'"
+                class="w-12 h-8 flex items-center justify-center text-xs font-medium border rounded-full transition-colors duration-200 cursor-pointer uppercase"
+                x-text="size"
+              ></button>
+            </template>
+          </div>
+        </div>
 
-            <div class="mb-8">
-            <span class="text-xs font-medium text-stone-500 block mb-2.5">Jumlah</span>
-            <div class="flex items-center border border-stone-300 rounded-sm w-32 justify-between px-3 py-2">
-                <button @click="if(quantity > 1) quantity--" class="text-stone-400 hover:text-black font-light text-lg cursor-pointer">-</button>
-                <span class="text-xs font-medium text-stone-800" x-text="quantity"></span>
-                <button @click="quantity++" class="text-stone-400 hover:text-black font-light text-lg cursor-pointer">+</button>
-            </div>
-            </div>
-
-            <div class="space-y-3">
-            <button 
-                id="addToCartFromModal" 
-                @click="addToCartFromModal()"
-                class="w-full bg-white border border-stone-900 text-stone-900 text-xs font-bold uppercase tracking-[0.15em] py-3.5 hover:bg-stone-50 transition-colors duration-200 cursor-pointer"
+        <div class="mb-8">
+          <span class="text-xs font-medium text-stone-500 block mb-2.5"
+            >Jumlah</span
+          >
+          <div
+            class="flex items-center border border-stone-300 rounded-sm w-32 justify-between px-3 py-2"
+          >
+            <button
+              @click="if(quantity > 1) quantity--"
+              class="text-stone-400 hover:text-black font-light text-lg cursor-pointer"
             >
-                Tambahkan ke keranjang
+              -
             </button>
-            </div>
+            <span
+              class="text-xs font-medium text-stone-800"
+              x-text="quantity"
+            ></span>
+            <button
+              @click="quantity++"
+              class="text-stone-400 hover:text-black font-light text-lg cursor-pointer"
+            >
+              +
+            </button>
+          </div>
         </div>
+
+        <div class="space-y-3">
+          <button
+            id="addToCartFromModal"
+            @click="addToCartFromModal()"
+            class="w-full bg-white border border-stone-900 text-stone-900 text-xs font-bold uppercase tracking-[0.15em] py-3.5 hover:bg-stone-50 transition-colors duration-200 cursor-pointer"
+          >
+            Tambahkan ke keranjang
+          </button>
         </div>
+      </div>
+    </div>
 
     <div
       class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-start border-t border-stone-100 pt-12"
@@ -255,7 +223,9 @@
           <li>Unisex Bisa Dipakai Pria / Wanita</li>
           <li>Produk Lokal Dengan Kualitas International</li>
           <li>Dibuat Di Indonesia</li>
-          <li class="font-semibold text-stone-800">Size Chart Di Sebelah Samping</li>
+          <li class="font-semibold text-stone-800">
+            Size Chart Di Sebelah Samping
+          </li>
           <li class="font-semibold text-stone-800">Cara Order:</li>
           <li>
             Barang Yang Kami Kirimkan Hanya Yang Kaka Order Sesuai Dari Sistem
@@ -303,7 +273,7 @@
         x-transition:leave-start="translate-x-0"
         x-transition:leave-end="translate-x-full"
       >
-      <!-- Header Keranjang -->
+        <!-- Header Keranjang -->
         <div
           class="px-6 py-5 border-b border-stone-100 flex items-center justify-between"
         >
@@ -421,8 +391,8 @@
               </div>
             </div>
           </template>
-          </div>
-          <!-- Total & Checkout -->
+        </div>
+        <!-- Total & Checkout -->
         <div class="border-t border-stone-100 px-6 py-6 bg-stone-50 space-y-4">
           <div
             class="flex justify-between text-xs font-bold uppercase tracking-wider text-stone-900"
@@ -465,49 +435,6 @@
       </svg>
     </a>
 
-    <!-- 7. FOOTER -->
-    <footer
-      class="bg-stone-950 text-stone-400 py-16 text-[11px] font-light tracking-wide border-t border-white/5"
-    >
-      <div
-        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12"
-      >
-        <div class="space-y-3">
-          <span class="text-xs font-bold tracking-[0.2em] text-white uppercase"
-            >citiwear.basic</span
-          >
-          <p class="leading-relaxed text-stone-400">
-            Pakaian esensial harian perkotaan dengan kenyamanan tanpa kompromi.
-          </p>
-        </div>
-        <div class="space-y-3">
-          <h4 class="font-bold uppercase tracking-wider text-white">
-            Hubungi Kami
-          </h4>
-          <p class="leading-relaxed text-stone-400">
-            WhatsApp: +62 812-3881-0175<br />Email: citiwear80@gmail.com
-          </p>
-        </div>
-        <div class="space-y-3">
-          <h4 class="font-bold uppercase tracking-wider text-white">
-            Metode Order
-          </h4>
-          <p class="leading-relaxed text-stone-400">
-            Masukkan produk ke keranjang belanja, lalu tekan checkout untuk
-            terhubung langsung ke WhatsApp kami.
-          </p>
-        </div>
-      </div>
-      <div
-        class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-white/5 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4"
-      >
-        <p class="text-stone-500">
-          &copy; 2026 citiwear.basic. Seluruh hak cipta dilindungi.
-        </p>
-        <p class="text-stone-600 text-[10px] tracking-widest uppercase">
-          Premium Urbanwear Essentials
-        </p>
-      </div>
-    </footer>
+    <div id="footer"></div>
   </body>
 </html>
