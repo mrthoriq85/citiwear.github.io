@@ -1,125 +1,23 @@
-<section class="testimonial-section">
-  <!-- <h2 class="section-title">Testimoni Pelanggan</h2> -->
-  <p
-    style="
-      text-align: center;
-      color: #666;
-      margin-top: -1.5rem;
-      margin-bottom: 1.5rem;
-    "
-  >
+<section class="testimonial-section py-12" aria-labelledby="testimonial-heading">
+  <h2 id="testimonial-heading" class="sr-only">Testimoni Pelanggan</h2>
+  <p class="text-center text-stone-600 text-sm mb-6">
     Geser untuk melihat ulasan & foto asli pembeli &rarr;
   </p>
 
-  <div class="testimonial-slider">
-    <!-- Gambar Testimoni 1 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/1.jpg" alt="Testimoni 1" />
-    </div>
-
-    <!-- Gambar Testimoni 2 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/2.jpg" alt="Testimoni 2" />
-    </div>
-
-    <!-- Gambar Testimoni 3 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/3.jpg" alt="Testimoni 3" />
-    </div>
-
-    <!-- Gambar Testimoni 4 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/4.jpg" alt="Testimoni 4" />
-    </div>
-
-    <!-- Gambar Testimoni 5 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/5.jpg" alt="Testimoni 5" />
-    </div>
-
-    <!-- Gambar Testimoni 6 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/6.jpg" alt="Testimoni 6" />
-    </div>
-
-    <!-- Gambar Testimoni 7 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/7.jpg" alt="Testimoni 7" />
-    </div>
-
-    <!-- Gambar Testimoni 8 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/8.jpg" alt="Testimoni 8" />
-    </div>
-
-    <!-- Gambar Testimoni 9 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/9.jpg" alt="Testimoni 9" />
-    </div>
-
-    <!-- Gambar Testimoni 10 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/10.jpg" alt="Testimoni 10" />
-    </div>
-
-    <!-- Gambar Testimoni 11 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/11.jpg" alt="Testimoni 11" />
-    </div>
-
-    <!-- Gambar Testimoni 12 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/12.jpg" alt="Testimoni 12" />
-    </div>
-
-    <!-- Gambar Testimoni 13 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/13.jpg" alt="Testimoni 13" />
-    </div>
-
-    <!-- Gambar Testimoni 14 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/14.jpg" alt="Testimoni 14" />
-    </div>
-
-    <!-- Gambar Testimoni 15 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/15.jpg" alt="Testimoni 15" />
-    </div>
-
-    <!-- Gambar Testimoni 16 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/16.jpg" alt="Testimoni 16" />
-    </div>
-
-    <!-- Gambar Testimoni 17 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/17.jpg" alt="Testimoni 17" />
-    </div>
-
-    <!-- Gambar Testimoni 18 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/18.jpg" alt="Testimoni 18" />
-    </div>
-
-    <!-- Gambar Testimoni 19 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/19.jpg" alt="Testimoni 19" />
-    </div>
-
-    <!-- Gambar Testimoni 20 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/20.jpg" alt="Testimoni 20" />
-    </div>
-
-    <!-- Gambar Testimoni 21 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/21.jpg" alt="Testimoni 21" />
-    </div>
-
-    <!-- Gambar Testimoni 22 -->
-    <div class="testimonial-card-img">
-      <img src="img/testimoni/22.jpg" alt="Testimoni 22" />
-    </div>
+  <div class="testimonial-slider flex gap-4 overflow-x-auto pb-4 invisible-scrollbar">
+    <!-- Menggunakan loop Alpine atau rendering standar dengan lazy loading -->
+    <template x-for="i in 22" :key="i">
+      <div class="testimonial-card-img flex-shrink-0 w-64 h-80 bg-stone-100 rounded-lg overflow-hidden">
+        <img 
+          :src="`img/testimoni/${i}.jpg`" 
+          :alt="`Testimoni Pembeli ${i}`" 
+          loading="lazy" 
+          decoding="async"
+          width="256"
+          height="320"
+          class="w-full h-full object-cover" 
+        />
+      </div>
+    </template>
   </div>
 </section>

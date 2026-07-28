@@ -4,17 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>citiwear.basic | Premium Urban Essentials</title>
-    <!-- Tailwind CSS & Alpine.js -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
-    <script defer src="include.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
 
+    <!-- Preconnect ke CDN eksternal untuk mempercepat koneksi TCP/TLS -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- Style & Script dengan pemuatan deferred/async -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" media="print" onload="this.media='all'"/>
+
+    <script defer src="script.js"></script>
+    <script defer src="include.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
   
   <body class="bg-[#FBFBFB] text-stone-900 antialiased" x-data="shopApp()">
