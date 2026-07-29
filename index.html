@@ -40,9 +40,8 @@
       x-data="{ 
                 activeSlide: 0, 
                 slides: [
-                    'img/banner3.png', 
-                    'img/banner2.jpg',
-                    'img/banner1.png'
+                    'img/banner3.webp', 
+                    'img/banner1.webp'
                 ],
                 init() { 
                     setInterval(() => { 
@@ -547,7 +546,7 @@
                   <!-- Gambar chart ukuran. Anda tinggal mengganti src ke file gambar panduan milik Anda -->
                   <!-- Contoh: 'img/size-chart-tshirt.jpg' untuk kaos atau dinamis sesuai kategori jika diperlukan -->
                   <img
-                    :src="selectedProduct.categoryName === 'T-Shirt' ? 'img/sizependek.jpg' : selectedProduct.categoryName === 'Long T-Shirt' ? 'img/sizepanjang.jpg' : selectedProduct.categoryName === 'Striped T-Shirt' ? 'img/sizependek.jpg' : selectedProduct.categoryName === 'Pants' ? 'img/sizecelana.png' : 'img/sizependek.jpg'"
+                    :src="selectedProduct.categoryName === 'T-Shirt' ? 'img/sizependek.webp' : selectedProduct.categoryName === 'Long T-Shirt' ? 'img/sizepanjang.webp' : selectedProduct.categoryName === 'Striped T-Shirt' ? 'img/sizependek.webp' : selectedProduct.categoryName === 'Pants' ? 'img/sizecelana.webp' : 'img/sizependek.webp'"
                     alt="Panduan Ukuran Citiwear"
                     class="w-full h-auto object-contain mx-auto max-h-[220px]"
                   />

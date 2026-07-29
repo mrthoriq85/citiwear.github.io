@@ -24,15 +24,15 @@
             quantity: 1,
             activeIndex: 0,
             images: [
-            { url: 'img/strip/Putih.png', color: 'Putih' },
-            { url: 'img/strip/Hitam.png', color: 'Hitam' },
-            { url: 'img/strip/Maroon.png', color: 'Maroon' }
+            { url: 'img/strip/Putih.webp', color: 'Putih' },
+            { url: 'img/strip/Hitam.webp', color: 'Hitam' },
+            { url: 'img/strip/Maroon.webp', color: 'Maroon' }
             ],
             init() {
             // PERBAIKAN: Mengisi data 'selectedProduct' bawaan saat halaman dimuat
             this.selectedProduct = { id: 1, name: 'Cotton Combed 24s Premium T-Shirt', price: 40000 };
             this.selectedColor = 'Abu Misty';
-            this.selectedColorImage = 'img/panjang/Putih.png';
+            this.selectedColorImage = 'img/panjang/Putih.webp';
             }
         }"
     >
@@ -139,7 +139,7 @@
               <button
                 @click="
                     selectedColor = color;
-                    selectedColorImage = color === 'Putih' ? 'img/strip/Putih.png' : color === 'Hitam' ? 'img/strip/Hitam.png' : color === 'Maroon' ? 'img/strip/Maroon.png' : '';
+                    selectedColorImage = color === 'Putih' ? 'img/strip/Putih.webp' : color === 'Hitam' ? 'img/strip/Hitam.webp' : color === 'Maroon' ? 'img/strip/Maroon.webp' : '';
                     const foundIndex = images.findIndex(img => img.color === color);
                     if (foundIndex !== -1) activeIndex = foundIndex;
                     "
