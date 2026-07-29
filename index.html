@@ -3,18 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Citiwear Basic menyediakan pakaian esensial harian perkotaan seperti kaos polos, polo shirt, dan streetwear premium berkualitas tinggi dengan kenyamanan tanpa kompromi." />
+    <meta name="description" content="Citiwear Basic menyediakan pakaian esensial harian perkotaan..." />
     <title>citiwear.basic | Premium Urban Essentials</title>
 
-    <!-- Preconnect ke CDN eksternal untuk mempercepat koneksi TCP/TLS -->
+    <!-- Preconnect untuk koneksi jaringan lebih cepat -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Style & Script dengan pemuatan deferred/async -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Asynchronous Load -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'" />
+
+    <!-- Preload & Stylesheet Lokal -->
+    <link rel="preload" href="style.css" as="style" />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Font Awesome (Asynchronous) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" media="print" onload="this.media='all'"/>
 
+    <!-- Scripts dengan Defer -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script defer src="script.js"></script>
     <script defer src="include.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
