@@ -8,6 +8,7 @@ function shopApp() {
     selectedSize: "m",
     selectedColor: "",
     selectedColorImage: "",
+    quantity: 1,
     whatsappNumber: "6281238810175",
 
     products: [
@@ -131,6 +132,9 @@ function shopApp() {
       );
     },
     formatRupiah(number) {
+      if (number === undefined || number === null || isNaN(number)) {
+        return "Rp 0";
+      }
       return "Rp " + number.toLocaleString("id-ID");
     },
     checkoutWhatsApp() {
