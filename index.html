@@ -169,7 +169,7 @@
           >
             Katalog Produk
           </h2>
-          <p class="mt-1.5 text-xs text-stone-400 font-light tracking-wide">
+          <p class="mt-1.5 text-xs text-stone-600 font-normal tracking-wide">
             Menampilkan produk dengan desain minimalis esensial.
           </p>
         </div>
@@ -214,7 +214,7 @@
 
             <div class="mt-4 flex flex-col flex-grow px-1">
               <span
-                class="text-[9px] uppercase font-bold tracking-[0.2em] text-stone-400 mb-1"
+                class="text-[9px] uppercase font-bold tracking-[0.2em] text-stone-700 mb-1"
                 x-text="product.categoryName"
               ></span>
               <h3
@@ -223,7 +223,7 @@
                 @click="openQuickView(product)"
               ></h3>
               <p
-                class="text-[11px] text-stone-400 font-light mt-0.5 line-clamp-1"
+                class="text-[11px] text-stone-600 font-light mt-0.5 line-clamp-1"
                 x-text="product.colorOptions.map(c => c.name).join(' · ')"
               ></p>
               <p
@@ -390,7 +390,7 @@
             <p class="text-sm font-bold" x-text="formatRupiah(cartTotal())"></p>
           </div>
           <p
-            class="text-[11px] text-stone-400 font-light leading-relaxed tracking-wide"
+            class="text-[11px] text-stone-600 font-light leading-relaxed tracking-wide"
           >
             Pesanan Anda akan dikirim langsung ke WhatsApp Admin toko kami untuk
             konfirmasi stok dan ongkir.
@@ -465,7 +465,7 @@
 
               <div class="mt-5 pt-4 border-t border-stone-100">
                 <h4
-                  class="text-[10px] font-bold uppercase tracking-wider text-stone-400"
+                  class="text-[10px] font-bold uppercase tracking-wider text-stone-700"
                 >
                   Deskripsi:
                 </h4>
@@ -552,7 +552,7 @@
                   />
 
                   <p
-                    class="text-[9px] text-stone-400 text-center mt-1.5 tracking-wide font-light"
+                    class="text-[9px] text-stone-600 text-center mt-1.5 tracking-wide font-light"
                   >
                     *Toleransi perbedaan ukuran 1-2 cm karena produksi massal.
                   </p>
@@ -596,7 +596,7 @@
           <!-- Info Detail Toko (Kiri) -->
           <div class="space-y-6 lg:pr-6">
             <span
-              class="text-[9px] uppercase font-bold tracking-[0.2em] text-stone-400"
+              class="text-[9px] uppercase font-bold tracking-[0.2em] text-stone-700"
               >Kunjungi Toko Fisik</span
             >
             <h2
@@ -609,23 +609,18 @@
               class="space-y-5 text-xs text-stone-600 font-light tracking-wide leading-relaxed"
             >
               <div class="border-b border-stone-100 pb-4">
-                <h4
-                  class="font-bold text-stone-900 uppercase text-[10px] tracking-wider mb-1"
-                >
+                <h3 class="font-bold text-stone-900 uppercase text-[10px] tracking-wider mb-1">
                   Alamat :
-                </h4>
+                </h3>
                 <p class="text-stone-500">
-                  WPXR+M79, Pojok, Pogalan, Kec. Pogalan, Kabupaten Trenggalek,
-                  Jawa Timur 66371
+                  WPXR+M79, Pojok, Pogalan, Kec. Pogalan, Kabupaten Trenggalek, Jawa Timur 66371
                 </p>
               </div>
 
               <div>
-                <h4
-                  class="font-bold text-stone-900 uppercase text-[10px] tracking-wider mb-1"
-                >
+                <h3 class="font-bold text-stone-900 uppercase text-[10px] tracking-wider mb-1">
                   Jam Operasional :
-                </h4>
+                </h3>
                 <p class="text-stone-500">
                   Senin – Minggu: 10.00 WIB – 22.00 WIB
                 </p>
