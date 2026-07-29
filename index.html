@@ -102,45 +102,48 @@
       </button>
     </section>
 
-    <section class="feature">
+    <section class="feature" aria-labelledby="feature-heading">
 
-        <div class="container">
+    <!-- Judul tersembunyi untuk struktur wilayah aksesibilitas (Screen Reader) -->
+    <h2 id="feature-heading" class="sr-only">Keunggulan Layanan Kami</h2>
 
-            <div class="item">
-                <i class="fa-solid fa-award"></i>
-                <div>
-                    <h4>Kualitas Premium</h4>
-                    <small>Bahan nyaman & awet</small>
-                </div>
+    <div class="container">
+
+        <div class="item">
+            <i class="fa-solid fa-award" aria-hidden="true"></i>
+            <div>
+                <h3 class="feature-title">Kualitas Premium</h3>
+                <p class="feature-desc">Bahan nyaman &amp; awet</p>
             </div>
-
-            <div class="item">
-                <i class="fa-solid fa-box-open"></i>
-                <div>
-                    <h4>Garansi Return</h4>
-                    <small>3 Hari Pengembalian</small>
-                </div>
-            </div>
-
-            <div class="item">
-                <i class="fa-solid fa-lock"></i>
-                <div>
-                    <h4>Pembayaran Aman</h4>
-                    <small>100% Aman</small>
-                </div>
-            </div>
-
-            <div class="item">
-                <i class="fa-solid fa-headset"></i>
-                <div>
-                    <h4>Fast Response</h4>
-                    <small>Customer Support</small>
-                </div>
-            </div>
-
         </div>
 
-    </section>
+        <div class="item">
+            <i class="fa-solid fa-box-open" aria-hidden="true"></i>
+            <div>
+                <h3 class="feature-title">Garansi Return</h3>
+                <p class="feature-desc">3 Hari Pengembalian</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+            <div>
+                <h3 class="feature-title">Pembayaran Aman</h3>
+                <p class="feature-desc">100% Aman</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <i class="fa-solid fa-headset" aria-hidden="true"></i>
+            <div>
+                <h3 class="feature-title">Fast Response</h3>
+                <p class="feature-desc">Customer Support</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
 
     <!-- 4. PRODUK KATALOG + FILTER -->
     <main id="catalog" class="max-w-7xl mx-auto px-6 py-20">
@@ -530,7 +533,7 @@
                   <!-- Gambar chart ukuran. Anda tinggal mengganti src ke file gambar panduan milik Anda -->
                   <!-- Contoh: 'img/size-chart-tshirt.jpg' untuk kaos atau dinamis sesuai kategori jika diperlukan -->
                   <img
-                    :src="selectedProduct.categoryName === 'T-Shirt' ? 'img/sizependek.jpg' : selectedProduct.categoryName === 'Long T-Shirt' ? 'img/sizepanjang.jpg' : selectedProduct.categoryName === 'Striped T-Shirt' ? 'img/sizependek.jpg' : selectedProduct.categoryName === 'Pants' ? 'img/sizecelana.png' : 'img/sizependek.png'"
+                    :src="selectedProduct.categoryName === 'T-Shirt' ? 'img/sizependek.jpg' : selectedProduct.categoryName === 'Long T-Shirt' ? 'img/sizepanjang.jpg' : selectedProduct.categoryName === 'Striped T-Shirt' ? 'img/sizependek.jpg' : selectedProduct.categoryName === 'Pants' ? 'img/sizecelana.png' : 'img/sizependek.jpg'"
                     alt="Panduan Ukuran Citiwear"
                     class="w-full h-auto object-contain mx-auto max-h-[220px]"
                   />
